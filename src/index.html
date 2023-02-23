@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="./index.css" />
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
   </head>
   <body>
@@ -24,11 +25,12 @@
       var game = new Phaser.Game(config);
 
       function preload() {
-        this.load.setBaseURL("http://labs.phaser.io");
-
-        this.load.image("sky", "assets/skies/space3.png");
-        this.load.image("logo", "assets/sprites/phaser3-logo.png");
-        this.load.image("red", "assets/particles/red.png");
+        this.load.image("logo", "./assets/favicon.png");
+        this.load.image("sky", "http://labs.phaser.io/assets/skies/space3.png");
+        this.load.image(
+          "red",
+          "http://labs.phaser.io/assets/particles/blue.png"
+        );
       }
 
       function create() {
@@ -37,7 +39,7 @@
         var particles = this.add.particles("red");
 
         var emitter = particles.createEmitter({
-          speed: 100,
+          speed: 150,
           scale: { start: 1, end: 0 },
           blendMode: "ADD",
         });
@@ -47,6 +49,7 @@
         logo.setVelocity(100, 200);
         logo.setBounce(1, 1);
         logo.setCollideWorldBounds(true);
+        logo.setScale(0.5);
 
         emitter.startFollow(logo);
       }
